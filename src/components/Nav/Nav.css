@@ -1,0 +1,34 @@
+<<<<<<< Updated upstream
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items:  center;
+    min-height: 10vh;
+    background: lightblue;
+    color: whitesmoke;
+}
+
+.nav-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+=======
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items:  center;
+    min-height: 10vh;
+    background: lightblue;
+    color: whitesmoke;
+}
+
+.nav-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+>>>>>>> Stashed changes
+}
