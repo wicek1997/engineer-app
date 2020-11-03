@@ -1,72 +1,36 @@
-import React from "react";
-import "./App.scss";
-import { Login, Register } from "./components/login/index";
+import React from 'react';
+import './App.scss';
+import Nav from './Nav';
+import About from './About';
+import Register from './Register';
+import Login from './Login';
+import Footer from './Footer';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLogginActive: true
-    };
-  }
-
-  componentDidMount() {
-    //Add .right by default
-    this.rightSide.classList.add("right");
-  }
-
-  changeState() {
-    const { isLogginActive } = this.state;
-
-    if (isLogginActive) {
-      this.rightSide.classList.remove("right");
-      this.rightSide.classList.add("left");
-    } else {
-      this.rightSide.classList.remove("left");
-      this.rightSide.classList.add("right");
-    }
-    this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
-  }
-
-  render() {
-    const { isLogginActive } = this.state;
-    const current = isLogginActive ? "Register" : "Login";
-    const currentActive = isLogginActive ? "login" : "register";
-    return (
+function App() {
+  return (
+    <Router>
       <div className="App">
-        <div className="login">
-          <div className="container" ref={ref => (this.container = ref)}>
-            {isLogginActive && (
-              <Login containerRef={ref => (this.current = ref)} />
-            )}
-            {!isLogginActive && (
-              <Register containerRef={ref => (this.current = ref)} />
-            )}
-          </div>
-          <RightSide
-            current={current}
-            currentActive={currentActive}
-            containerRef={ref => (this.rightSide = ref)}
-            onClick={this.changeState.bind(this)}
-          />
-        </div>
+        <Nav />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+        </Switch>
+        <Footer />
       </div>
-    );
-  }
+    </Router>
+
+  );
 }
 
-const RightSide = props => {
-  return (
-    <div
-      className="right-side"
-      ref={props.containerRef}
-      onClick={props.onClick}
-    >
-      <div className="inner-container">
-        <div className="text">{props.current}</div>
-      </div>
-    </div>
-  );
-};
+const Home = () => (
+  <div>
+    <h1>Welcome to Home Page</h1>
+  </div>
+   
+  
+)
 
 export default App;
