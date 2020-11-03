@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.scss';
+import './pages.scss';
 
-function About() {
+export function About() {
   return (
     <div className="container">
         <h1>About Page</h1>
@@ -14,5 +14,3 @@ function About() {
     </div>
   );
 }
-
-export default About;

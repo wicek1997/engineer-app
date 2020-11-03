@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.scss';
+import './Footer.scss';
 
-function Footer() {
+export function Footer() {
   return (
     <div className="footer">
         <h1>Autor: Tomasz Ziebura, Kamil Pierzchała, Marek Wica</h1>
@@ -9,4 +9,3 @@ function Footer() {
   );
 }
 
-export default Footer;
