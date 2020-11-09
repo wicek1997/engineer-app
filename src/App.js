@@ -21,7 +21,6 @@ function App() {
         <Nav />
         <Switch>
           <Route path="/" exact component={About} />
-
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
         </Switch>
