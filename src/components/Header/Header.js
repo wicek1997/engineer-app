@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import './Nav.scss';
+import './Header.scss';
 
 const navbar = [
   {
@@ -18,14 +18,10 @@ const navbar = [
 ];
 
 const renderNav = () => {
-  const navStyle = {
-    color: 'white'
-  }
-
   return(
     <nav>
       <ul className="nav-links">
-        { navbar.map((item, index) => <li key={index}><Link style={navStyle} to={item.url}>{item.title}</Link></li>) }
+        { navbar.map((item, index) => <li key={index}><Link to={item.url}>{item.title}</Link></li>) }
       </ul>
     </nav>
   )
@@ -33,7 +29,8 @@ const renderNav = () => {
 
 export const Header = () => {
   return(
-    <header>      
+    <header>
+      
       { renderNav() }
     </header>
   )

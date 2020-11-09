@@ -13,6 +13,14 @@ const register = ({ username, email, password }) => {
   });
 }
 
+const login = ({ username, email, password }) => {
+  return axios.post("/api/v1/user", {
+    username,
+    email,
+    password
+  });
+}
+
 export const UserApi = {
-  register,
+  register, login
 };
