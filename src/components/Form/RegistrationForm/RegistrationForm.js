@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import {Text} from '../Field';
 import { useForm } from "react-hook-form";
 import { UserApi } from '../../../services';
@@ -10,26 +10,25 @@ import "./Form.scss";
 export const RegistrationForm = () => {
   const { register, handleSubmit, watch, errors } = useForm();
   const dispatch = useDispatch();
-
-  const onSubmit = () => {
-    UserApi.register("test", "test@example.com", "12345")
-    .then(response => console.log(response))
-    .catch(error => {
-      dispatch(alertActions.sendErrorAlert(error.message));
-    });
+  const [lastTestedUsername, setLastTestedUsername] = useState();
+  const onSubmit = data => {
+    UserApi.register(data)
+    .then(response => response.data)
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
   }
   return(
     <div className="register">
-    <form classname="form" onSubmit={handleSubmit(onSubmit)}>
-      <h1>Registration</h1>
-      <Text name="username" innerRef={register({required: true, min: 10})} errors={errors.username} help="Username" placeholder={"Enter username..."} />
-      <Text name="password" innerRef={register({required: true, min: 10})} errors={errors.username} help="Password" placeholder={"Enter password..."} />
-      <Text name="repeat-password" innerRef={register({required: true, min: 10})} errors={errors.username} help="Repeat-password" placeholder={"Enter password..."} />
-      <Text name="name" innerRef={register({required: true, min: 10})} errors={errors.username} help="Name" placeholder={"Enter name..."} />
-      <Text name="surname" innerRef={register({required: true, min: 10})} errors={errors.username} help="Surname" placeholder={"Enter surname..."} />
-      <Text name="email" innerRef={register({required: true, min: 10})} errors={errors.username} help="Email" placeholder={"Enter email..."} />
-      <button className="form-button">Submit</button>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Text name="username" innerRef={register({required: true})} errors={errors.username} help="Username" placeholder={"Enter username..."} />
+      <Text name="email" innerRef={register({required: true})} errors={errors.email} help="email" placeholder={"Enter email..."} />
+      <Text name="password" innerRef={register({required: true})} errors={errors.password} help="password" placeholder={"Enter password..."} />
+      <button>Submit</button>
     </form>
     </div>
   )
+  
 }
+
+
+
