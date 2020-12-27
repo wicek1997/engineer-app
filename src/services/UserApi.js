@@ -6,21 +6,27 @@ const axios = Axios.create({
 });
 
 const register = ({ username, email, password }) => {
-  return axios.post("/api/v1/user", {
+  return axios.post("https://127.0.0.1:8080/api/v1/user", {
     username,
     email,
     password
   });
 }
 
-const login = ({ username, email, password }) => {
-  return axios.post("/api/v1/user", {
+const login = ({ login, password }) => {
+  return axios.post("https://127.0.0.1:8080/api/v1/authenticate", {
+    login,
+    password
+  });
+}
+//unikalny login i mail
+const validateUser = ({ username, email }) => {
+  return axios.head("https://127.0.0.1:8080/api/v1/user/user-exists?username=" + username + "&email=" + email, {
     username,
     email,
-    password
   });
 }
 
 export const UserApi = {
-  register, login
+  register, login, validateUser
 };

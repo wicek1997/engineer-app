@@ -3,7 +3,7 @@ import "./Pages.scss";
 
 export const Home = () => {
   return(
-    <div classname="container">
+    <div className="container">
         <h1>About Page</h1>
         <p>W ramach pracy zostaną przedstawione założenia oraz implementacja platformy do analizy błędów, 
             pobierania zestawień błędów w całym okresie działania aplikacji lub w wybranym okresie, analiza wraz z wykresami ilości błędów i stopnia powagi błędu. 
