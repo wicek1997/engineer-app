@@ -31,7 +31,9 @@ export const LoginForm = () => {
       </div>
       
       <label>Password</label>
+      <div className ="password_dotted">
       <Text name="password" errors={errors.username} innerRef={register({required: "Password is required."})} placeholder={"Enter password..."} />
+      </div>
       <div className="alert">
       {errors.password && <p>{errors.password.message}</p>}
       </div>

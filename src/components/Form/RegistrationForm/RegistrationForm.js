@@ -12,7 +12,7 @@ export const RegistrationForm = () => {
   const { register, handleSubmit, watch, errors } = useForm();
   const dispatch = useDispatch();
   const [lastTestedUsername, setLastTestedUsername] = useState();
-  const watchPassword = watch(['password','passwordRepeat']); 
+  //const watchPassword = watch(['password','passwordRepeat']); 
 
   //let responseStatus = response.status;
   
@@ -35,7 +35,6 @@ export const RegistrationForm = () => {
       //dorobic alert jakis 
       console.log("haslo bledne");
     }
-
   }
 
   return(
