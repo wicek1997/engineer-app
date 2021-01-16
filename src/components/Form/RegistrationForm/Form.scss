@@ -3,7 +3,7 @@
 
 .content{
     margin: 1%;
-
+    
     .register{
     position: relative;
     z-index: 1;
@@ -21,12 +21,16 @@
             margin: 2%;
 
         }
-        
+        .password_dotted{  
+            -Webkit-text-security: disc;
+        }
         h1{
             color:red;
             
         }
-        
+        .alert{
+            color: red;
+        }
         .button_submit{
             font-family: "Roboto", sans-serif;
             padding: 2%;

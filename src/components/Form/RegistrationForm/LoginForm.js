@@ -15,7 +15,7 @@ export const LoginForm = () => {
   const onSubmit = data => {
     console.log(data);
     UserApi.login(data)
-    .then(response => console.log(response))
+    .then(response => console.log(response, "ZALOGOWANO"))
     .catch(error => console.log(error));
   }
 
@@ -23,11 +23,21 @@ export const LoginForm = () => {
     <div className="register">
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <h1>Login</h1>
+
       <label>Username</label>
-      <Text name="login" errors={errors.username} innerRef={register({required: true})} placeholder={"Enter username..."} />
+      <Text name="username" innerRef={register({required: "Username is required."})} errors={errors.username} placeholder={"Enter username..."} />
+      <div className="alert">
+      {errors.username && <p>{errors.username.message}</p>}
+      </div>
+      
       <label>Password</label>
-      <Text name="password" errors={errors.username} innerRef={register({required: true})} placeholder={"Enter password..."} />
+      <Text name="password" errors={errors.username} innerRef={register({required: "Password is required."})} placeholder={"Enter password..."} />
+      <div className="alert">
+      {errors.password && <p>{errors.password.message}</p>}
+      </div>
+
       <button className="button_submit">Login</button>
+
       <Link to='/register'>
         <button className="button_submit">Register</button>
       </Link>
