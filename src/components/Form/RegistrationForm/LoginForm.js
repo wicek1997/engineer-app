@@ -13,11 +13,18 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = data => {
-    console.log(data);
+    console.log(data, " logowanie");
+
     UserApi.login(data)
-    .then(response => console.log(response, "ZALOGOWANO"))
-    .catch(error => console.log(error));
+    .then((response) => {
+      console.log(response, "ZALOGOWANO");
+
+    })
+    .catch((error) => {
+      console.log(error, " cos jest nie tak.")
+    });
   }
+
 
   return(
     <div className="register">
@@ -25,7 +32,7 @@ export const LoginForm = () => {
       <h1>Login</h1>
 
       <label>Username</label>
-      <Text name="username" innerRef={register({required: "Username is required."})} errors={errors.username} placeholder={"Enter username..."} />
+      <Text name="login" innerRef={register({required: "Username is required."})} errors={errors.username} placeholder={"Enter username..."} />
       <div className="alert">
       {errors.username && <p>{errors.username.message}</p>}
       </div>
@@ -41,7 +48,7 @@ export const LoginForm = () => {
       <button className="button_submit">Login</button>
 
       <Link to='/register'>
-        <button className="button_submit">Register</button>
+        <button className="button_submit">Create account</button>
       </Link>
     </form>
     </div>

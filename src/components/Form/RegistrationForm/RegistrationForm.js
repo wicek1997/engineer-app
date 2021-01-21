@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { UserApi } from '../../../services';
 import { useDispatch } from 'react-redux';
 import { alertActions } from '../../../redux';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import "./Form.scss";
 
 
@@ -12,24 +12,39 @@ export const RegistrationForm = () => {
   const { register, handleSubmit, watch, errors } = useForm();
   const dispatch = useDispatch();
   const [lastTestedUsername, setLastTestedUsername] = useState();
-  //const watchPassword = watch(['password','passwordRepeat']); 
+  
+  const watchPassword = watch('password'); 
+  const watchPasswordRepeat = watch('passwordRepeat');
 
-  //let responseStatus = response.status;
   
   const onSubmit = data => {
     UserApi.validateUser(data).then(response => {
-
-      //responseStatus = response.status;
-      console.log(response.status, "jest git");
-
+      console.log(response.status, "user jest unikatowy.");
+          
     });
+
     //czy hasla sa takie same ale to watchem trzeba zrobic
     if(data.password === data.passwordRepeat){
-      console.log(data);
+      console.log(data, "\ndane do logowania");
       UserApi.register(data)
         .then(response => response.data)
-        .then(data => console.log(data))
-        .catch(error => console.log(error, "uzytkownik istnieje w bazie"));  
+        .then(data => console.log(data, "dodano do bazy."))
+        .catch((error) => {
+
+          let errorType = error.response.status;
+          switch(errorType)
+          {
+            case 400:
+              console.log(errorType, "Problem jest.");
+              break;
+            case 404:
+              console.log(errorType, "Dodano do bazy.");
+              break;
+            case 500:
+              console.log(errorType, "Problem z polaczeniem.");
+              break;
+          }             
+        });  
     }
     else{
       //dorobic alert jakis 
