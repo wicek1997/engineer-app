@@ -2,29 +2,68 @@ import React from 'react';
 import {Text} from '../Field';
 import { useForm } from "react-hook-form";
 import { UserApi } from '../../../services';
-import { useDispatch } from 'react-redux';
-import { alertActions } from '../../../redux';
+import { createDispatchHook, useDispatch } from 'react-redux';
+import { StaticRouter, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./Form.scss";
+import { alertActions,
+  authReducer,
+  authActions } from '../../../redux';
+
+
+
 
 
 export const LoginForm = () => {
-  const { login, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, watch, errors } = useForm();
+  
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const onSubmit = () => {
-    UserApi.login("test", "test@example.com", "12345")
-    .then(response => console.log(response))
-    .catch(error => {
-      dispatch(alertActions.sendErrorAlert(error.message));
+  const onSubmit = data => {
+    console.log(data, " logowanie");
+
+    UserApi.login(data)
+    .then((response) => response.data)
+    .then(data =>{
+      console.log(data, "ZALOGOWANO");
+
+      localStorage.setItem("access_token", data.payload.access_token);
+      
+      dispatch(authActions.loginSuccess({jwt: data.payload.access_token}));
+      history.push('/');
+    })
+    .catch((error) => {
+      dispatch(alertActions.sendErrorAlert("Blad logowania."))
+      console.log(error, " cos jest nie tak.")
     });
   }
+
+
   return(
     <div className="register">
-    <form classname="form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <h1>Login</h1>
-      <Text name="username"  errors={errors.username} help="Username" placeholder={"Enter username..."} />
-      <Text name="password"  errors={errors.username} help="Password" placeholder={"Enter password..."} />
-      <button className="form-button">Submit</button>
+
+      <label>Username</label>
+      <Text name="login" innerRef={register({required: "Username is required."})} errors={errors.username} placeholder={"Enter username..."} />
+      <div className="alert">
+      {errors.username && <p>{errors.username.message}</p>}
+      </div>
+      
+      <label>Password</label>
+      <div className ="password_dotted">
+      <Text name="password" errors={errors.username} innerRef={register({required: "Password is required."})} placeholder={"Enter password..."} />
+      </div>
+      <div className="alert">
+      {errors.password && <p>{errors.password.message}</p>}
+      </div>
+
+      <button className="button_submit">Login</button>
+
+      <Link to='/register'>
+        <button className="button_submit">Create account</button>
+      </Link>
     </form>
     </div>
   )

@@ -15,6 +15,10 @@ const navbar = [
     "title": "Login",
     "url": "/login",
   },
+  {
+    "title": "Logout",
+    "url": "/logout",
+  },
 ];
 
 const renderNav = () => {

@@ -3,6 +3,7 @@
 
 .content{
     margin: 1%;
+    
     .register{
     position: relative;
     z-index: 1;
@@ -13,39 +14,50 @@
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 
+        input{
+            font-family: "Roboto", sans-serif;
+            width: 100%;
+            padding: 2%;
+            margin: 2%;
 
-    input{
-        font-family: "Roboto", sans-serif;
-        width: 100%;
-        padding: 2%;
-        margin: 2%;
-     }
-     
-     h1{
-         color:red;
-     }
-    
-     .form-button{
-        font-family: "Roboto", sans-serif;
-        padding: 2%;
-        margin: 2%;
-        text-decoration: none;
-        background-color:#44c767;
-        border-radius:28px;
-        border:1px solid #18ab29;
-        display:inline-block;
-        cursor:pointer;
-        color:#ffffff;
-        font-family:Arial;
-        font-size:17px;
-        padding:16px 31px;
-        text-decoration:none;
-        text-shadow:0px 1px 0px #2f6627;
-  
+        }
+        .password_dotted{  
+            -Webkit-text-security: disc;
+        }
+        h1{
+            color:red;
+            
+        }
+        .alert{
+            color: red;
+        }
+        .button_submit{
+            font-family: "Roboto", sans-serif;
+            padding: 2%;
+            margin: 2%;
+            text-decoration: none;
+            background-color:#44c767;
+            border-radius:28px;
+            border:1px solid #18ab29;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:17px;
+            padding:16px 31px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #2f6627;
+        } 
     }
-
 }
-
+.label {
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 13px;
+  margin-top: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 200;
 }
-
  
