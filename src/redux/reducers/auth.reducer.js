@@ -38,9 +38,10 @@ export const authReducer = (state = initialState, { type, payload }) => {
         }
       }
     case AUTH.LOGOUT:
+      const removeJwt = localStorage.removeItem('access_token')
       return {
-        //remove_jwt = localStorage.removeItem('access_token'),
-        //isAuthenticated: false,
+        removeJwt,
+        isAuthenticated: false,
       }
     default:
       return state;
@@ -48,7 +49,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
 }
 
 
-function parseJwt (token) {
+function parseJwt(token){
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
   var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
@@ -61,18 +62,12 @@ function parseJwt (token) {
 
 function timestampToDate(formattedTime){
   let unix_timestamp = 1549312452
-// Create a new JavaScript Date object based on the timestamp
-// multiplied by 1000 so that the argument is in milliseconds, not seconds.
-var date = new Date(unix_timestamp * 1000);
-// Hours part from the timestamp
-var hours = date.getHours();
-// Minutes part from the timestamp
-var minutes = "0" + date.getMinutes();
-// Seconds part from the timestamp
-var seconds = "0" + date.getSeconds();
+  var date = new Date(unix_timestamp * 1000);
+  var hours = date.getHours();
+  var minutes = "0" + date.getMinutes();
+  var seconds = "0" + date.getSeconds();
 
-// Will display time in 10:30:23 format
-var formattedTIme = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+  formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
   return formattedTime;
-//console.log(formattedTime);
 }

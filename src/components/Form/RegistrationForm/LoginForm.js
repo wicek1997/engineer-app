@@ -25,8 +25,9 @@ export const LoginForm = () => {
 
       localStorage.setItem("access_token", data.payload.access_token);
 
-      dispatch();
-      history.push('/home');
+      
+      //dispatch();
+      history.push('/');
     })
     .catch((error) => {
       console.log(error, " cos jest nie tak.")
