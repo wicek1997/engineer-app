@@ -2,15 +2,19 @@ import React from 'react';
 import {Text} from '../Field';
 import { useForm } from "react-hook-form";
 import { UserApi } from '../../../services';
-import { useDispatch } from 'react-redux';
+import { createDispatchHook, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { alertActions } from '../../../redux';
 import { Link } from 'react-router-dom';
+import { authReducer } from "../../../redux";
 import "./Form.scss";
 
 
 export const LoginForm = () => {
   const { register, handleSubmit, watch, errors } = useForm();
+  
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSubmit = data => {
     console.log(data, " logowanie");
@@ -19,6 +23,10 @@ export const LoginForm = () => {
     .then((response) => {
       console.log(response, "ZALOGOWANO");
 
+      localStorage.setItem("access_token", data.payload.access_token);
+
+      dispatch();
+      history.push('/home');
     })
     .catch((error) => {
       console.log(error, " cos jest nie tak.")
