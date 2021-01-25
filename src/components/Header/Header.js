@@ -33,8 +33,7 @@ const renderNav = () => {
 
 export const Header = () => {
   return(
-    <header>
-      
+    <header>      
       { renderNav() }
     </header>
   )

@@ -7,7 +7,6 @@ import { StaticRouter, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import "./Form.scss";
 import { alertActions,
-  authReducer,
   authActions } from '../../../redux';
 
 

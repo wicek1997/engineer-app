@@ -12,13 +12,15 @@ export const Logout = () => {
     useEffect(() => {
         dispatch(authActions.logoutSuccess({})); 
         history.push('/');
+
+        console.log("Wylogowano.");
     },
     []);
-    console.log("Wylogowano.");
+    
     
     return(
         <div className="container">
             <h1>About Page</h1>
         </div>
-)
+    )
 }
