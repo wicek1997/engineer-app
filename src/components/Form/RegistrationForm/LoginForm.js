@@ -3,11 +3,15 @@ import {Text} from '../Field';
 import { useForm } from "react-hook-form";
 import { UserApi } from '../../../services';
 import { createDispatchHook, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { alertActions } from '../../../redux';
+import { StaticRouter, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { authReducer } from "../../../redux";
 import "./Form.scss";
+import { alertActions,
+  authReducer,
+  authActions } from '../../../redux';
+
+
+
 
 
 export const LoginForm = () => {
@@ -20,16 +24,17 @@ export const LoginForm = () => {
     console.log(data, " logowanie");
 
     UserApi.login(data)
-    .then((response) => {
-      console.log(response, "ZALOGOWANO");
+    .then((response) => response.data)
+    .then(data =>{
+      console.log(data, "ZALOGOWANO");
 
       localStorage.setItem("access_token", data.payload.access_token);
-
       
-      //dispatch();
+      dispatch(authActions.loginSuccess({jwt: data.payload.access_token}));
       history.push('/');
     })
     .catch((error) => {
+      dispatch(alertActions.sendErrorAlert("Blad logowania."))
       console.log(error, " cos jest nie tak.")
     });
   }

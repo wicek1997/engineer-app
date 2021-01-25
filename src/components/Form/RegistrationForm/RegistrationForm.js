@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { UserApi } from '../../../services';
 import { useDispatch } from 'react-redux';
 import { alertActions } from '../../../redux';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./Form.scss";
 
 

@@ -5,7 +5,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import {Home, Register, Login} from './pages';
+import {Home, Register, Login, Logout} from './pages';
 
 function App() {
   return (
@@ -17,6 +17,9 @@ function App() {
           </Route>
           <Route path="/register">
             <Register />
+          </Route>
+          <Route path="/logout">
+            <Logout />
           </Route>
           <Route exact path="/">
             <Home />
