@@ -31,7 +31,7 @@ export const LoginForm = () => {
       localStorage.setItem("access_token", data.payload.access_token);
       
       dispatch(authActions.loginSuccess({jwt: data.payload.access_token}));
-      history.push('/');
+      history.push('/account');
     })
     .catch((error) => {
       dispatch(alertActions.sendErrorAlert("Blad logowania."))
