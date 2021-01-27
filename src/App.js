@@ -5,7 +5,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import {Home, Register, Login, Logout} from './pages';
+import {Home, Register, Login, Logout, Dashboard, ProjectList, Project, CreateProject} from './pages';
+
 
 function App() {
   return (
@@ -20,6 +21,14 @@ function App() {
           </Route>
           <Route path="/logout">
             <Logout />
+          </Route>
+          <Route exact path="/account">
+            <ProjectList />
+          </Route>
+          <Route path="/account/project/:id" component={Project}> 
+          </Route>
+          <Route path="/createproject">
+            <CreateProject />
           </Route>
           <Route exact path="/">
             <Home />

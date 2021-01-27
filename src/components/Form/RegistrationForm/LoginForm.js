@@ -6,12 +6,7 @@ import { createDispatchHook, useDispatch } from 'react-redux';
 import { StaticRouter, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import "./Form.scss";
-import { alertActions,
-<<<<<<< HEAD
-  authReducer,
-=======
->>>>>>> 4634ad8be3f039e98aca8c9a8769d8a83d29254e
-  authActions } from '../../../redux';
+import { alertActions, authReducer, authActions } from '../../../redux';
 
 
 
@@ -34,7 +29,7 @@ export const LoginForm = () => {
       localStorage.setItem("access_token", data.payload.access_token);
       
       dispatch(authActions.loginSuccess({jwt: data.payload.access_token}));
-      history.push('/');
+      history.push('/account');
     })
     .catch((error) => {
       dispatch(alertActions.sendErrorAlert("Blad logowania."))

@@ -6,7 +6,7 @@ const axios = Axios.create({
   baseURL: `${process.env.REACT_APP_API_IP}`,
   timeout: 5000,
   headers: {
-    Authorization: `Bearer ${jwt}`,
+  Authorization: `Bearer ${jwt}`,
   }
 });
 

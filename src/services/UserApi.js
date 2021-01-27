@@ -22,15 +22,6 @@ const login = ({ login, password }) => {
   });
 }
 
-<<<<<<< HEAD
-const login = ({ login, password }) => {
-  return axios.post("http://127.0.0.1:8080/api/v1/authenticate", {
-    login,
-    password
-  });
-}
-=======
->>>>>>> 4634ad8be3f039e98aca8c9a8769d8a83d29254e
 //unikalny login i mail
 const validateUser = ({ username, email }) => {
   return axios.head("http://127.0.0.1:8080/api/v1/user/user-exists?username=" + username + "&email=" + email, {

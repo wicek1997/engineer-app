@@ -10,19 +10,11 @@ import "./Form.scss";
 
 export const RegistrationForm = () => {
   const { register, handleSubmit, watch, errors } = useForm();
-<<<<<<< HEAD
   const dispatch = useDispatch();
   const [lastTestedUsername, setLastTestedUsername] = useState();
   
   const watchPassword = watch('password'); 
   const watchPasswordRepeat = watch('passwordRepeat');
-=======
-  //const dispatch = useDispatch();
-  //const [lastTestedUsername, setLastTestedUsername] = useState();
-  
-  //const watchPassword = watch('password'); 
-  //const watchPasswordRepeat = watch('passwordRepeat');
->>>>>>> 4634ad8be3f039e98aca8c9a8769d8a83d29254e
 
   
   const onSubmit = data => {
